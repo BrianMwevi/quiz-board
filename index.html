@@ -28,21 +28,25 @@
 		<!-- LANDING PAGE END -->
 
 		<!-- USER-DETAIL START -->
-		<section class="user-detail">
+		<section class="user-detail hide">
 			<div class="text">
 				<h2 class="heading">
 					How should I <br />
 					call you?
 				</h2>
-				<form>
+				<form class="user-form">
 					<input
 						type="text"
 						name="username"
 						id="username"
 						placeholder="Enter username"
 						required
+						autocomplete="off"
+						value="Brian"
 					/>
-					<i class="fas fa-arrow-right"></i>
+					<button type="submit" class="user-btn">
+						<i class="fas fa-arrow-right"></i>
+					</button>
 				</form>
 			</div>
 		</section>
