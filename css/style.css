@@ -9,15 +9,18 @@
 	height: 100vh;
 	opacity: 1;
 	visibility: visible;
-	transition: opacity 1.5s ease-in-out;
+	transition: opacity 1s ease-in-out;
 }
 
+h2 {
+	color: #45eba5;
+}
 .hide {
 	height: 0;
 	overflow: hidden;
 	opacity: 0.6;
 	visibility: hidden;
-	transition: opacity 1.5s ease-in-out;
+	transition: opacity 1s ease-in-out;
 }
 
 .active {
@@ -38,6 +41,7 @@
 		url(../images/hero.jpg);
 	clip-path: polygon(0 0, 100% 0, 100% 90vh, 50% 100vh, 0 90vh);
 	background-size: cover;
+	background-color: #163a5f;
 	background-position: center center;
 	background-repeat: no-repeat;
 }
@@ -69,10 +73,11 @@ button {
 	padding: 15px 35px;
 	border-radius: 0px;
 	background-color: transparent;
-	border: 1px solid #fff;
+	/* border: 1px solid #45eba5; */
 	color: #fff;
 	cursor: pointer;
-	/* box-shadow: 1px 1px 4px #373447; */
+	/* text-shadow: 1px 1px 10px #1d566e; */
+	box-shadow: 0 0 5px #45eba5;
 }
 
 button i {
@@ -98,6 +103,7 @@ button i {
 	margin: 40px 0;
 	padding: 5px;
 	background-color: #0e263d;
+	box-shadow: 0 0 5px #45eba5;
 }
 
 input {
@@ -150,7 +156,7 @@ input:focus {
 	padding: 60px 100px;
 	background-color: #1f154a;
 	border-radius: 10px;
-	box-shadow: 1px 0 5px 1px #645b8d;
+	box-shadow: 1px 0 5px 1px #45eba5;
 	color: #fff;
 	width: 50%;
 	height: 60%;
@@ -163,7 +169,7 @@ input:focus {
 .timer,
 .score {
 	position: absolute;
-	color: #fff;
+	color: #45eba5;
 	text-shadow: 1px 0 8px #aa8f8f;
 	border: 1px solid #645b8d;
 }
@@ -196,6 +202,14 @@ input:focus {
 	position: absolute;
 	left: 45.8%;
 	bottom: 5%;
+}
+
+.user {
+	position: absolute;
+	left: 50%;
+	top: 5%;
+	color: #45eba5;
+	transform: translate(-50%, -50%);
 }
 /* Questions End */
 
@@ -241,19 +255,19 @@ input:focus {
 	border-width: 0 3px 3px 0;
 	transform: rotate(45deg);
 }
-/* Input styling End */
 
 .radio {
 	border-radius: 50%;
 }
 
 .answer .radio:after {
-    width: 11px;
-    height: 11px;
-    border:none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border-radius: 50%;
+	width: 11px;
+	height: 11px;
+	border: none;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #1f154a;
+	border-radius: 50%;
 }
+/* Input styling End */

@@ -33,50 +33,42 @@ let inputQuiz = {
 takeQuiz.addEventListener("click", (e) => {
 	e.preventDefault();
 	homePage.classList.add("hide");
-	homePage.style.display = "none";
-	userPage.classList.remove("hide");
-	userPage.classList.add("show");
+	userPage.classList.replace("hide", "show");
 });
 username.addEventListener("submit", (e) => {
 	e.preventDefault();
-
-	startQuiz.classList.remove("hide");
-	startQuiz.classList.add("show");
-	userPage.classList.add("hide");
+	startQuiz.classList.replace("hide", "show");
 	userPage.style.display = "none";
 });
 
 let timer = () => {
-    let displayTimer = document.querySelector(".timer");
-    let output= "00:00:00"
+	let displayTimer = document.querySelector(".timer");
+	let output = "00:00:00";
 	secs++;
 	if (secs === 60) {
 		mins++;
 		secs = 0;
 	}
-	if (mins === 1 && secs === 0) {
+	if (mins === 5 && secs === 0) {
 		clearInterval(duration);
-    }
-    if (secs < 10) {
-        output = `0${hours}:${mins}:0${secs}`
-    } if (mins < 10) {
-        output = `0${hours}:0${mins}:${secs}`;
-    } if (mins < 10 && secs < 10) {
-        output = `0${hours}:0${mins}:0${secs}`;
-    }
-    
-    return displayTimer.innerHTML = output
-    
-        
-	// `${hours}:${mins}:${secs}`);
-	// return console.log(`${hours}:${mins}:${secs}`);
+	}
+	if (secs < 10) {
+		output = `0${hours}:${mins}:0${secs}`;
+	}
+	if (mins < 10) {
+		output = `0${hours}:0${mins}:${secs}`;
+	}
+	if (mins < 10 && secs < 10) {
+		output = `0${hours}:0${mins}:0${secs}`;
+	}
+
+	return (displayTimer.innerHTML = output);
 };
 
 // Display the quizzes and start timer
 function startQuizzes() {
-	startQuiz.classList.remove("show");
-	questions.classList.remove("hide");
-	questions.classList.add("show");
+	startQuiz.classList.replace("show", "hide");
+	questions.classList.replace("hide", "show");
 	duration = setInterval(timer, 1000);
 }
 
@@ -84,6 +76,7 @@ function startQuizzes() {
 const userForm = document.getElementById("form");
 userForm.addEventListener("submit", (e) => {
 	e.preventDefault();
+	clearInterval(duration);
 	let answers = new FormData(userForm);
 	compareAnswers(answers);
 });
@@ -107,50 +100,43 @@ let grading = (correctAns) => {
 // Compare submitted answers
 function compareAnswers(answers) {
 	let score = 0;
-	for (let answer of answers) {
+    for (let answer of answers) {
+        console.log(answer);
 		// SINGLE-SELECTION QUESTIONS
 		if (answer[0].slice(0, 1) === "s") {
-			if (singleSelection[answer[0]] == answer[1]) {
+			if (singleSelection[answer[0]] === answer[1]) {
 				score += 5;
 			}
 		}
 		// MULTI-SELECTION QUESTIONS
 		else if (answer[0].slice(0, 1) === "m") {
-			if (multiSelection[answer[0]] == answer[1]) {
+			if (multiSelection[answer[0]] === answer[1]) {
 				score += 5;
 			}
 		}
 		// INPUT QUESTIONS
 		else if (answer[0].slice(0, 1) === "i") {
-			if (inputQuiz[answer[0]] == answer[1]) {
+			if (inputQuiz[answer[0]] === answer[1]) {
 				score += 5;
 			}
 		}
 	}
-	// document.querySelector(".correct").innerHTML = `Score: ${grading(score)}`;
+	return (document.querySelector(".score").innerHTML = score);
 }
 
 function slider(e) {
 	const slide = e.target.getAttribute("id");
-	const active_quiz = document.getElementById("active");
+	const active_quiz = document.querySelector(".active");
 	const next = active_quiz.nextElementSibling;
 	const prev = active_quiz.previousElementSibling;
-	console.log(active_quiz);
-	if (slide === "next" && next !== null) {
-		console.log(slide);
-		if (next.classList.contains("question_set")) {
-			active_quiz.style.display = "none";
-			active_quiz.id = "inactive";
-			next.id = "active";
-			next.style.display = "block";
-		}
+
+	if (slide === "next" && next.classList.contains("question_set")) {
+		active_quiz.classList.replace("active", "inactive");
+		next.classList.replace("inactive", "active");
 	} else if (prev !== null && slide === "prev") {
-		console.log(slide);
-		if (prev.classList.contains("question_set")) {
-			active_quiz.style.display = "none";
-			active_quiz.id = "inactive";
-			prev.id = "active";
-			prev.style.display = "block";
-		}
+		active_quiz.classList.replace("active", "inactive");
+		prev.classList.replace("inactive", "active");
+	} else {
+		return document.getElementById("submit").classList.remove("hide");
 	}
 }
