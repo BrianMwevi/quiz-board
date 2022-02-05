@@ -71,4 +71,29 @@ let grading = (correctAns) => {
 };
 
 // Compare submitted answers
+function compareAnswers(answers) {
+	let score = 0;
+	for (let answer of answers) {
+		// SINGLE-SELECTION QUESTIONS
+		if (answer[0].slice(0, 1) === "s") {
+			if (singleSelection[answer[0]] == answer[1]) {
+				score += 5;
+			}
+		}
+		// MULTI-SELECTION QUESTIONS
+		else if (answer[0].slice(0, 1) === "m") {
+			if (multiSelection[answer[0]] == answer[1]) {
+				score += 5;
+			}
+		}
+		// INPUT QUESTIONS
+		else if (answer[0].slice(0, 1) === "i") {
+			if (inputQuiz[answer[0]] == answer[1]) {
+				score += 5;
+			}
+		}
+	}
+	// document.querySelector(".correct").innerHTML = `Score: ${grading(score)}`;
+}
+
 
