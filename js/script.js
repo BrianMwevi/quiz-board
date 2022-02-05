@@ -47,6 +47,8 @@ username.addEventListener("submit", (e) => {
 });
 
 let timer = () => {
+    let displayTimer = document.querySelector(".timer");
+    let output= "00:00:00"
 	secs++;
 	if (secs === 60) {
 		mins++;
@@ -54,10 +56,19 @@ let timer = () => {
 	}
 	if (mins === 1 && secs === 0) {
 		clearInterval(duration);
-	}
-	return (document.querySelector(
-		".timer"
-	).innerHTML = `${hours}:${mins}:${secs}`);
+    }
+    if (secs < 10) {
+        output = `0${hours}:${mins}:0${secs}`
+    } if (mins < 10) {
+        output = `0${hours}:0${mins}:${secs}`;
+    } if (mins < 10 && secs < 10) {
+        output = `0${hours}:0${mins}:0${secs}`;
+    }
+    
+    return displayTimer.innerHTML = output
+    
+        
+	// `${hours}:${mins}:${secs}`);
 	// return console.log(`${hours}:${mins}:${secs}`);
 };
 
