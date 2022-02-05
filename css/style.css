@@ -22,6 +22,15 @@
 	/* display: none; */
 }
 
+#active {
+    display: block;
+}
+
+
+#inactive {
+    display: none;
+}
+
 .home {
 	position: relative;
 	/* height: 100vh; */
@@ -151,6 +160,7 @@ input:focus {
 	box-shadow: 1px 0 10px #645b8d;
 	color: #fff;
 	width: 50%;
+	height: 50%;
 }
 
 .question {
@@ -160,7 +170,26 @@ input:focus {
 .timer h2 {
 	position: absolute;
 	right: 3%;
-    top:5%;
-    color: #fff;
+	top: 5%;
+	color: #fff;
+}
+
+#prev {
+	position: absolute;
+	bottom: 10%;
+	left: 5%;
+}
+
+#next {
+	position: absolute;
+	right: 5%;
+	bottom: 10%;
+}
+#next i {
+	padding: 0 0 0 15px;
+}
+
+#prev i {
+	padding: 0 15px 0 0;
 }
 /* Questions End */
