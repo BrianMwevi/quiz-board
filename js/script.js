@@ -96,4 +96,27 @@ function compareAnswers(answers) {
 	// document.querySelector(".correct").innerHTML = `Score: ${grading(score)}`;
 }
 
+function slider(e) {
+	const slide = e.target.getAttribute("id");
+	const active_quiz = document.getElementById("active");
+	const next = active_quiz.nextElementSibling;
+	const prev = active_quiz.previousElementSibling;
 
+    if (slide === "next" && next !== null) {
+        console.log(slide);
+		if (next.classList.contains("question_set")) {
+			active_quiz.style.display = "none";
+			active_quiz.id = "inactive";
+			next.id = "active";
+			next.style.display = "block";
+		}
+	} else if (prev !== null && slide === "prev") {
+        console.log(slide);
+		if (prev.classList.contains("question_set")) {
+			active_quiz.style.display = "none";
+			active_quiz.id = "inactive";
+			prev.id = "active";
+			prev.style.display = "block";
+		}
+	}
+}
