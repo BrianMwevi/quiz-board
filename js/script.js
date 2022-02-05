@@ -101,9 +101,9 @@ function slider(e) {
 	const active_quiz = document.getElementById("active");
 	const next = active_quiz.nextElementSibling;
 	const prev = active_quiz.previousElementSibling;
-
-    if (slide === "next" && next !== null) {
-        console.log(slide);
+    console.log(active_quiz);
+	if (slide === "next" && next !== null) {
+		console.log(slide);
 		if (next.classList.contains("question_set")) {
 			active_quiz.style.display = "none";
 			active_quiz.id = "inactive";
@@ -111,7 +111,7 @@ function slider(e) {
 			next.style.display = "block";
 		}
 	} else if (prev !== null && slide === "prev") {
-        console.log(slide);
+		console.log(slide);
 		if (prev.classList.contains("question_set")) {
 			active_quiz.style.display = "none";
 			active_quiz.id = "inactive";
