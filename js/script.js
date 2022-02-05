@@ -7,9 +7,9 @@ const startQuiz = document.querySelector(".start");
 const questions = document.querySelector(".questions");
 
 let duration;
-let hours,
-	mins,
-	secs = 0;
+let hours = 0;
+let mins = 0;
+let secs = 0;
 
 // Correct Answers
 let singleSelection = {
@@ -45,6 +45,29 @@ username.addEventListener("submit", (e) => {
 	userPage.classList.add("hide");
 	userPage.style.display = "none";
 });
+
+let timer = () => {
+	secs++;
+	if (secs === 60) {
+		mins++;
+		secs = 0;
+	}
+	if (mins === 1 && secs === 0) {
+		clearInterval(duration);
+	}
+	return (document.querySelector(
+		".timer"
+	).innerHTML = `${hours}:${mins}:${secs}`);
+	// return console.log(`${hours}:${mins}:${secs}`);
+};
+
+// Display the quizzes and start timer
+function startQuizzes() {
+	startQuiz.classList.remove("show");
+	questions.classList.remove("hide");
+	questions.classList.add("show");
+	duration = setInterval(timer, 1000);
+}
 
 // Listen when user submit answers
 const userForm = document.getElementById("form");
@@ -101,7 +124,7 @@ function slider(e) {
 	const active_quiz = document.getElementById("active");
 	const next = active_quiz.nextElementSibling;
 	const prev = active_quiz.previousElementSibling;
-    console.log(active_quiz);
+	console.log(active_quiz);
 	if (slide === "next" && next !== null) {
 		console.log(slide);
 		if (next.classList.contains("question_set")) {
