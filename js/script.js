@@ -4,7 +4,7 @@ const username = document.querySelector(".user-form");
 const homePage = document.querySelector(".home");
 const userPage = document.querySelector(".user-detail");
 const startQuiz = document.querySelector(".start");
-const questions = document.querySelector(".questions")
+const questions = document.querySelector(".questions");
 
 let duration;
 let hours,
