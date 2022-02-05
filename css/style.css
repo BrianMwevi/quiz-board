@@ -23,12 +23,11 @@
 }
 
 #active {
-    display: block;
+	display: block;
 }
 
-
 #inactive {
-    display: none;
+	display: none;
 }
 
 .home {
@@ -167,11 +166,14 @@ input:focus {
 	font-size: 25px;
 }
 
-.timer h2 {
+.timer {
 	position: absolute;
 	right: 3%;
 	top: 5%;
 	color: #fff;
+    text-shadow: 1px 0 10px #645b8d;
+	border: 1px solid #645b8d;
+    padding:10px;
 }
 
 #prev {
