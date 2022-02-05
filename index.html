@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<!-- LANDING PAGE START -->
-		<section class="home">
+		<section class="home hide">
 			<div class="img"></div>
 			<div class="text">
 				<h2 class="heading">JAVASCRIPT!</h2>
@@ -31,8 +31,8 @@
 		<section class="container user-detail hide">
 			<div class="text">
 				<h2 class="heading">
-					Pause, how should I <br />
-					call you?
+					Hold on, what's <br />
+					your name?
 				</h2>
 				<form class="user-form">
 					<input
@@ -59,7 +59,7 @@
 				<button class="btn" type="button" id="start">
 					Cancel <i class="fas fa-window-close"></i>
 				</button>
-				<button class="btn" type="button" id="start">
+				<button class="btn" type="button" onclick="startQuizzes()">
 					Start <i class="fas fa-check"></i>
 				</button>
 			</div>
@@ -68,57 +68,65 @@
 
 		<!-- Questions Start -->
 		<section class="questions container show">
-			<div class="timer">
-				<h2 class="question">00:00:00</h2>
+			<div>
+				<h2></h2>
+				<h2 class="timer">00:00:00</h2>
 			</div>
-			<form method="post" class="form">
-				<div class="question_set" id="active">
+
+			<h2 class="score">00.00</h2>
+			<form method="post" id="form">
+				<div class="question_set active first-quiz">
 					<h2 class="question">Is this hidden?</h2>
-					<div class="answers">
-						<input
-							type="radio"
-							name="s1"
-							id="html"
-							value="HyperText Markup Language"
-							required
-							checked
-						/>
-						HyperText Markup Language<br />
-						<input
-							type="radio"
-							name="s1"
-							id="css"
-							value="Cascading Styling Sheet"
-							required
-						/>
-						Cascading Style Sheet
-						<br />
-					</div>
+					<label class="answer"
+						>Ans-1
+						<input type="checkbox" name="m1"/>
+						<span class="checkbox"></span>
+					</label>
+					<label class="answer"
+						>Ans-2
+						<input type="checkbox" name="m1"/>
+						<span class="checkbox"></span>
+					</label>
+					<label class="answer"
+						>Ans-3
+						<input type="checkbox" name="m1"/>
+						<span class="checkbox"></span>
+					</label>
+					<label class="answer"
+						>Four
+						<input type="checkbox" name="m1"/>
+						<span class="checkbox"></span>
+					</label>
 				</div>
-				<div class="question_set">
-					<h2 class="question">What is HTML in full?</h2>
-					<div class="answers">
-						<input
-							type="radio"
-							name="s2"
-							id="html"
-							value="HyperText Markup Language"
-							required
-							checked
-						/>
-						HyperText Markup Language<br />
-						<input
-							type="radio"
-							name="s2"
-							id="css"
-							value="Cascading Styling Sheet"
-							required
-						/>
-						Cascading Style Sheet
-						<br />
-					</div>
+
+        	<div class="question_set inactive">
+					<h2 class="question">Radio Inputs?</h2>
+					<label class="answer"
+						>HyperText Markup Language
+						<input type="radio" name="s1" value="HyperText Markup Language"/>
+						<span class="checkbox radio"></span>
+					</label>
+					<label class="answer"
+						>Ans-2
+						<input type="radio" name="s1" value="Ans-2"/>
+						<span class="checkbox radio"></span>
+					</label>
+					<label class="answer"
+						>Ans-3
+						<input type="radio" name="s1" value="Ans-2"/>
+						<span class="checkbox radio"></span>
+					</label>
+					<label class="answer"
+						>Four
+						<input type="radio" name="s1" value="Ans-2"/>
+						<span class="checkbox radio"></span>
+					</label>
 				</div>
+
+				<button type="submit" class="hide" id="submit">Submit</button>
 			</form>
+			<button type="button" id="prev" onclick="slider(event)">Prev</button>
+			<button type="button" id="next" onclick="slider(event)">Next</button>
 		</section>
 		<!-- Questions End -->
 
