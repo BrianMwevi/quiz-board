@@ -45,3 +45,30 @@ username.addEventListener("submit", (e) => {
 	userPage.classList.add("hide");
 	userPage.style.display = "none";
 });
+
+// Listen when user submit answers
+const userForm = document.getElementById("form");
+userForm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	let answers = new FormData(userForm);
+	compareAnswers(answers);
+});
+
+// Grade user using a range of <30%<=40%<=50%<70%<=80%<90%<=100%
+let grading = (correctAns) => {
+	let score = (correctAns / 12) * 100;
+	let grade;
+	if (score >= 90) {
+		grade = "You're a genius!";
+	} else if (score >= 80 && score < 90) {
+		grade = "You were born to Code!";
+	} else if (score >= 70 && score < 80) {
+		grade = "You're a geek!";
+	} else {
+		grade = "Keep it up, you'll get there!";
+	}
+	return grade;
+};
+
+// Compare submitted answers
+
