@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<!-- LANDING PAGE START -->
-		<section class="home">
+		<section class="home show">
 			<div class="img"></div>
 			<div class="text">
 				<h2 class="heading">JAVASCRIPT!</h2>
@@ -28,10 +28,10 @@
 		<!-- LANDING PAGE END -->
 
 		<!-- USER-DETAIL START -->
-		<section class="user-detail hide">
+		<section class="container user-detail hide">
 			<div class="text">
 				<h2 class="heading">
-					How should I <br />
+					Pause, how should I <br />
 					call you?
 				</h2>
 				<form class="user-form">
@@ -51,6 +51,28 @@
 			</div>
 		</section>
 		<!-- USER DETAIL END -->
+
+		<!-- Initiate Questions Start -->
+		<section class="container start hide">
+			<div class="text">
+				<h2 class="heading">Start Quizzes?</h2>
+				<button class="btn" type="button" id="start">
+					Cancel <i class="fas fa-window-close"></i>
+				</button>
+				<button class="btn" type="button" id="start">
+					Start <i class="fas fa-check"></i>
+				</button>
+			</div>
+		</section>
+		<!-- Initiate Questions End -->
+
+		<!-- Questions Start -->
+		<section class="questions">
+			<form method="post" class="form">
+				<div class="question_set"></div>
+			</form>
+		</section>
+		<!-- Questions End -->
 
 		<script src="js/script.js"></script>
 	</body>
