@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<!-- LANDING PAGE START -->
-		<section class="home show">
+		<section class="home">
 			<div class="img"></div>
 			<div class="text">
 				<h2 class="heading">JAVASCRIPT!</h2>
@@ -67,9 +67,57 @@
 		<!-- Initiate Questions End -->
 
 		<!-- Questions Start -->
-		<section class="questions">
+		<section class="questions container show">
+			<div class="timer">
+				<h2 class="question">00:00:00</h2>
+			</div>
 			<form method="post" class="form">
-				<div class="question_set"></div>
+				<div class="question_set" id="active">
+					<h2 class="question">Is this hidden?</h2>
+					<div class="answers">
+						<input
+							type="radio"
+							name="s1"
+							id="html"
+							value="HyperText Markup Language"
+							required
+							checked
+						/>
+						HyperText Markup Language<br />
+						<input
+							type="radio"
+							name="s1"
+							id="css"
+							value="Cascading Styling Sheet"
+							required
+						/>
+						Cascading Style Sheet
+						<br />
+					</div>
+				</div>
+				<div class="question_set">
+					<h2 class="question">What is HTML in full?</h2>
+					<div class="answers">
+						<input
+							type="radio"
+							name="s2"
+							id="html"
+							value="HyperText Markup Language"
+							required
+							checked
+						/>
+						HyperText Markup Language<br />
+						<input
+							type="radio"
+							name="s2"
+							id="css"
+							value="Cascading Styling Sheet"
+							required
+						/>
+						Cascading Style Sheet
+						<br />
+					</div>
+				</div>
 			</form>
 		</section>
 		<!-- Questions End -->
