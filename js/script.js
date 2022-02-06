@@ -1,7 +1,7 @@
+const homePage = document.querySelector(".home");
 const takeQuiz = document.getElementById("take-quiz");
 const username = document.querySelector(".user-form");
 
-const homePage = document.querySelector(".home");
 const userPage = document.querySelector(".user-detail");
 const startQuiz = document.querySelector(".start");
 const questions = document.querySelector(".questions");
@@ -13,9 +13,9 @@ let secs = 0;
 
 // Correct Answers
 let singleSelection = {
-	s1: "HyperText Markup Language",
-	s2: "Cascading Styling Sheet",
-	s3: "Ans-3",
+	s1: "When comparing two or more values and their data types",
+	s2: "<script>",
+	s3: "Dynamically Typed",
 	s4: "Ans-4",
 };
 let multiSelection = {
@@ -39,6 +39,9 @@ username.addEventListener("submit", (e) => {
 	e.preventDefault();
 	startQuiz.classList.replace("hide", "show");
 	userPage.style.display = "none";
+	let user = new FormData(username);
+
+	document.querySelector(".username").textContent = user.get("username");
 });
 
 let timer = () => {
@@ -83,7 +86,7 @@ userForm.addEventListener("submit", (e) => {
 
 // Grade user using a range of <30%<=40%<=50%<70%<=80%<90%<=100%
 let grading = (correctAns) => {
-	let score = (correctAns / 12) * 100;
+	let score = (correctAns / Object.keys(singleSelection).length) * 100;
 	let grade;
 	if (score >= 90) {
 		grade = "You're a genius!";
@@ -94,34 +97,36 @@ let grading = (correctAns) => {
 	} else {
 		grade = "Keep it up, you'll get there!";
 	}
-	return grade;
+	return `${score}%: ${grade}`;
 };
 
 // Compare submitted answers
 function compareAnswers(answers) {
 	let score = 0;
-    for (let answer of answers) {
-        console.log(answer);
+	for (let answer of answers) {
+		let formKey = answer[0].slice(0, 1);
+		let formValue = answer[1];
+
 		// SINGLE-SELECTION QUESTIONS
-		if (answer[0].slice(0, 1) === "s") {
-			if (singleSelection[answer[0]] === answer[1]) {
-				score += 5;
+		if (formKey === "s") {
+			if (singleSelection[answer[0]] === formValue) {
+				score++;
 			}
 		}
 		// MULTI-SELECTION QUESTIONS
-		else if (answer[0].slice(0, 1) === "m") {
-			if (multiSelection[answer[0]] === answer[1]) {
-				score += 5;
+		else if (formKey === "m") {
+			if (multiSelection[answer[0]] === formValue) {
+				score++;
 			}
 		}
 		// INPUT QUESTIONS
-		else if (answer[0].slice(0, 1) === "i") {
-			if (inputQuiz[answer[0]] === answer[1]) {
-				score += 5;
+		else if (formKey === "i") {
+			if (inputQuiz[answer[0]] === formValue) {
+				score++;
 			}
 		}
 	}
-	return (document.querySelector(".score").innerHTML = score);
+	return (document.querySelector(".score").innerHTML = grading(score));
 }
 
 function slider(e) {
