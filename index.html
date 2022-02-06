@@ -15,11 +15,11 @@
 	</head>
 	<body>
 		<!-- LANDING PAGE START -->
-		<section class="home hide">
+		<section class="home show">
 			<div class="img"></div>
 			<div class="text">
 				<h2 class="heading">JAVASCRIPT!</h2>
-				<p>How knowledgable are you?</p>
+				<p>Are you ready we script<br> your brain?</p>
 				<button id="take-quiz">
 					Take Quiz<i class="fas fa-arrow-right"></i>
 				</button>
@@ -67,62 +67,119 @@
 		<!-- Initiate Questions End -->
 
 		<!-- Questions Start -->
-		<section class="questions container show">
+		<section class="questions container hide">
 			<div>
 				<h2></h2>
 				<h2 class="timer">00:00:00</h2>
 			</div>
 
 			<h2 class="score">00.00</h2>
+			<h2 class="user">
+				How much do you know, <span class="username">Doe</span>?
+			</h2>
 			<form method="post" id="form">
 				<div class="question_set active first-quiz">
 					<h2 class="question">Is this hidden?</h2>
 					<label class="answer"
 						>Ans-1
-						<input type="checkbox" name="m1"/>
+						<input type="checkbox" name="m1" />
 						<span class="checkbox"></span>
 					</label>
 					<label class="answer"
 						>Ans-2
-						<input type="checkbox" name="m1"/>
+						<input type="checkbox" name="m1" />
 						<span class="checkbox"></span>
 					</label>
 					<label class="answer"
 						>Ans-3
-						<input type="checkbox" name="m1"/>
+						<input type="checkbox" name="m1" />
 						<span class="checkbox"></span>
 					</label>
 					<label class="answer"
 						>Four
-						<input type="checkbox" name="m1"/>
+						<input type="checkbox" name="m1" />
 						<span class="checkbox"></span>
 					</label>
 				</div>
 
-        	<div class="question_set inactive">
-					<h2 class="question">Radio Inputs?</h2>
+				<div class="question_set inactive">
+					<h2 class="question">
+						When do we use <em> "===" </em> compared to
+						<em> "==" ?</em>
+					</h2>
 					<label class="answer"
-						>HyperText Markup Language
-						<input type="radio" name="s1" value="HyperText Markup Language"/>
+						>When comparing two or more values
+						<input
+							type="radio"
+							name="s1"
+							value="When comparing two or more values"
+						/>
 						<span class="checkbox radio"></span>
 					</label>
 					<label class="answer"
-						>Ans-2
-						<input type="radio" name="s1" value="Ans-2"/>
+						>When comparing two or more values and their data types
+						<input
+							type="radio"
+							name="s1"
+							value="When comparing two or more values and their data types"
+						/>
 						<span class="checkbox radio"></span>
 					</label>
 					<label class="answer"
-						>Ans-3
-						<input type="radio" name="s1" value="Ans-2"/>
+						>Only when creating loops
+						<input type="radio" name="s1" value="Only when creating loops" />
 						<span class="checkbox radio"></span>
 					</label>
 					<label class="answer"
-						>Four
-						<input type="radio" name="s1" value="Ans-2"/>
+						>None of the above
+						<input type="radio" name="s1" value="None of the above" />
 						<span class="checkbox radio"></span>
 					</label>
 				</div>
-
+				<div class="question_set inactive">
+					<h2 class="question">
+						Which tag can you use to link a Javascript file?
+					</h2>
+					<label class="answer"
+						>&lt;java&gt;
+						<input type="radio" name="s2" value="&lt;java&gt;" />
+						<span class="checkbox radio"></span>
+					</label>
+					<label class="answer"
+						>&lt;source&gt;
+						<input type="radio" name="s2" value="&lt;source&gt;" />
+						<span class="checkbox radio"></span>
+					</label>
+					<label class="answer"
+						>&lt;script&gt;
+						<input type="radio" name="s2" value="&lt;script&gt;" />
+						<span class="checkbox radio"></span>
+					</label>
+					<label class="answer"
+						>&lt;javascript&gt;
+						<input type="radio" name="s2" value="&lt;javascript&gt;" />
+						<span class="checkbox radio"></span>
+					</label>
+				</div>
+				<div class="question_set inactive">
+					<h2 class="question">
+						Is javascript a statically typed or a dynamically typed language?
+					</h2>
+					<label class="answer"
+						>StaticallyTyped
+						<input type="radio" name="s3" value="statically;" />
+						<span class="checkbox radio"></span>
+					</label>
+					<label class="answer"
+						>Dynamically Typed
+						<input type="radio" name="s3" value="Dynamically Typed" />
+						<span class="checkbox radio"></span> </label
+					><label class="answer"
+						>Other
+						<input type="radio" name="s3" value="Other;" />
+						<span class="checkbox radio"></span>
+					</label>
+				</div>
 				<button type="submit" class="hide" id="submit">Submit</button>
 			</form>
 			<button type="button" id="prev" onclick="slider(event)">Prev</button>
