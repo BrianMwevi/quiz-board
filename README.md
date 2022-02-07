@@ -12,6 +12,10 @@
 ## Description
 The 3rd independent project to test Javascript, HTML and CSS knowledge during the [Moringa Access program](https://moringaschool.com/courses).
 
+
+## Project Designs
+[Link to Figma](https://www.figma.com/file/TAgTR2AU3M2LRFCaq3jmtN/Template-Kit-v1-(Community)?node-id=201%3A121)
+
 ## Installation
 * Clone the repo to your local computer.
 * Fork the repo to appear in your list of repositories.
