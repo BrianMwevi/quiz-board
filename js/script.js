@@ -39,9 +39,11 @@ username.addEventListener("submit", (e) => {
 	e.preventDefault();
 	startQuiz.classList.replace("hide", "show");
 	userPage.style.display = "none";
-	let user = new FormData(username);
+	let user = new FormData(username).get("username");
+	let capsUsername = user.charAt(0).toUpperCase();
+	user = capsUsername+user.slice(1)
 
-	document.querySelector(".username").textContent = user.get("username");
+	document.querySelector(".username").innerText = user;
 });
 
 let timer = () => {
