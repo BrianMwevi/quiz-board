@@ -11,25 +11,25 @@ let hours = 0;
 let mins = 0;
 let secs = 0;
 
-// Correct Answers
-let singleSelection = {
-	s1: "When comparing two or more values and their data types",
-	s2: "<script>",
-	s3: "Dynamically Typed",
-	s4: "Ans-4",
-};
-let multiSelection = {
-	m1: ["Ans-1", "Ans-2", "Ans-3"],
-	m2: ["Ans-1", "Ans-2", "Ans-3"],
-	m3: ["Ans-1", "Ans-2", "Ans-3"],
-	m4: ["Ans-1", "Ans-2", "Ans-3"],
-};
-let inputQuiz = {
-	i1: "Ans-1",
-	i2: "Ans-2",
-	i3: "Ans-3",
-	i4: "Ans-4",
-};
+// // Correct Answers
+// let singleSelection = {
+// 	s1: "When comparing two or more values and their data types",
+// 	s2: "<script>",
+// 	s3: "Dynamically Typed",
+// 	s4: "Ans-4",
+// };
+// let multiSelection = {
+// 	m1: ["Ans-1", "Ans-2", "Ans-3"],
+// 	m2: ["Ans-1", "Ans-2", "Ans-3"],
+// 	m3: ["Ans-1", "Ans-2", "Ans-3"],
+// 	m4: ["Ans-1", "Ans-2", "Ans-3"],
+// };
+// let inputQuiz = {
+// 	i1: "Ans-1",
+// 	i2: "Ans-2",
+// 	i3: "Ans-3",
+// 	i4: "Ans-4",
+// };
 
 takeQuiz.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -42,7 +42,7 @@ username.addEventListener("submit", (e) => {
 	userPage.style.display = "none";
 	let user = new FormData(username).get("username");
 	let capsUsername = user.charAt(0).toUpperCase();
-	user = capsUsername+user.slice(1)
+	user = capsUsername + user.slice(1);
 
 	document.querySelector(".username").innerText = user;
 });
@@ -71,65 +71,11 @@ let timer = () => {
 	return (displayTimer.innerHTML = output);
 };
 
-// Display the quizzes and start timer
+// // Display the quizzes and start timer
 function startQuizzes() {
 	startQuiz.classList.replace("show", "hide");
 	questions.classList.replace("hide", "show");
 	duration = setInterval(timer, 1000);
-}
-
-// Listen when user submit answers
-const userForm = document.getElementById("form");
-userForm.addEventListener("submit", (e) => {
-	e.preventDefault();
-	clearInterval(duration);
-	let answers = new FormData(userForm);
-	compareAnswers(answers);
-});
-
-// Grade user using a range of <30%<=40%<=50%<70%<=80%<90%<=100%
-let grading = (correctAns) => {
-	let score = (correctAns / Object.keys(singleSelection).length) * 100;
-	let grade;
-	if (score >= 90) {
-		grade = "You're a genius!";
-	} else if (score >= 80 && score < 90) {
-		grade = "You were born to Code!";
-	} else if (score >= 70 && score < 80) {
-		grade = "You're a geek!";
-	} else {
-		grade = "Keep it up, you'll get there!";
-	}
-	return `${score}%: ${grade}`;
-};
-
-// Compare submitted answers
-function compareAnswers(answers) {
-	let score = 0;
-	for (let answer of answers) {
-		let formKey = answer[0].slice(0, 1);
-		let formValue = answer[1];
-
-		// SINGLE-SELECTION QUESTIONS
-		if (formKey === "s") {
-			if (singleSelection[answer[0]] === formValue) {
-				score++;
-			}
-		}
-		// MULTI-SELECTION QUESTIONS
-		else if (formKey === "m") {
-			if (multiSelection[answer[0]] === formValue) {
-				score++;
-			}
-		}
-		// INPUT QUESTIONS
-		else if (formKey === "i") {
-			if (inputQuiz[answer[0]] === formValue) {
-				score++;
-			}
-		}
-	}
-	return (document.querySelector(".score").innerHTML = grading(score));
 }
 
 function slider(e) {
@@ -148,3 +94,101 @@ function slider(e) {
 		return document.getElementById("submit").classList.remove("hide");
 	}
 }
+
+// ======= VALIDATE RADIO FORMS =======
+const answers = {
+	question1: "Sunday",
+	question2: "Yes",
+};
+
+const userForm = document
+	.querySelector("#userForm")
+	.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const [isValidForm, grade, missedAnswers] = validateForm();
+		if (!isValidForm) {
+			return false;
+		} else {
+			updateUser(grade, missedAnswers);
+		}
+	});
+
+const updateUser = (grade, missedAnswers) => {
+	const output = document.querySelector(".results");
+	document.querySelector(".output-message").innerText = grade;
+	output.classList.replace("hide", "show");
+
+	const showAnswers = document
+		.querySelector(".show-answers")
+		.addEventListener("click", (e) => {
+			document.querySelector("fieldset").setAttribute("disabled", "true");
+			output.classList.replace("show", "hide");
+			document
+				.querySelectorAll(".active")
+				.forEach((section) => section.classList.replace("active", "inactive"));
+			document
+				.querySelector(".question_set")
+				.classList.replace("inactive", "active");
+			missedAnswers.forEach((answer) =>
+				document
+					.querySelector(`input[value=${answer[1]}]`)
+					.setAttribute("checked", true)
+			);
+		});
+};
+
+const validateForm = () => {
+	let score = 0;
+	let missedAnswers = [];
+	for (const key in answers) {
+		const userAnswer = document.querySelector(`input[name=${key}]:checked`);
+		const unanswered = document.querySelector(`input[name=${key}]`);
+
+		if (userAnswer === null) {
+			unanswered.parentElement.classList.add("invalid-form");
+			console.log("Error", key);
+			return [false, null, []];
+		} else {
+			unanswered.parentElement.classList.remove("invalid-form");
+			const correctAnswer = compareAnswers(key, userAnswer.value);
+			if (correctAnswer === true) {
+				score++;
+			} else {
+				missedAnswers.push([key, correctAnswer]);
+			}
+		}
+	}
+	return [true, grading(score), missedAnswers];
+};
+
+const compareAnswers = (question, userAnswer) =>
+	answers[question] === userAnswer ? true : answers[question];
+
+const grading = (score) => {
+	const grade = (score / 2) * 100;
+	let message = "";
+	if (grade < 50) {
+		message = "Below average!";
+	} else if (grade >= 50 && grade <= 70) {
+		message = "You're a geek!";
+	} else if (grade > 70 && grade <= 90) {
+		message = "We should call you chifu!";
+	} else {
+		message = "You're a genius!";
+	}
+	return `${grade}%: ${message}`;
+};
+
+const resetForm = () => {
+	document
+		.querySelectorAll(".show")
+		.forEach((section) => section.classList.replace("show", "hide"));
+	document
+		.querySelectorAll(".active")
+		.forEach((section) => section.classList.replace("active", "inactive"));
+	document.querySelector(".questions").classList.replace("hide", "show");
+	document
+		.querySelector(".question_set")
+		.classList.replace("inactive", "active");
+	return document.getElementById("userForm").reset();
+};
