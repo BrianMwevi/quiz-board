@@ -30,6 +30,7 @@ let inputQuiz = {
 	i3: "Ans-3",
 	i4: "Ans-4",
 };
+
 takeQuiz.addEventListener("click", (e) => {
 	e.preventDefault();
 	homePage.classList.add("hide");
