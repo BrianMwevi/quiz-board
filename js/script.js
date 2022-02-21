@@ -10,27 +10,6 @@ let duration;
 let hours = 0;
 let mins = 0;
 let secs = 0;
-
-// // Correct Answers
-// let singleSelection = {
-// 	s1: "When comparing two or more values and their data types",
-// 	s2: "<script>",
-// 	s3: "Dynamically Typed",
-// 	s4: "Ans-4",
-// };
-// let multiSelection = {
-// 	m1: ["Ans-1", "Ans-2", "Ans-3"],
-// 	m2: ["Ans-1", "Ans-2", "Ans-3"],
-// 	m3: ["Ans-1", "Ans-2", "Ans-3"],
-// 	m4: ["Ans-1", "Ans-2", "Ans-3"],
-// };
-// let inputQuiz = {
-// 	i1: "Ans-1",
-// 	i2: "Ans-2",
-// 	i3: "Ans-3",
-// 	i4: "Ans-4",
-// };
-
 takeQuiz.addEventListener("click", (e) => {
 	e.preventDefault();
 	homePage.classList.add("hide");
@@ -99,21 +78,24 @@ function slider(e) {
 const answers = {
 	question1: "Sunday",
 	question2: "Yes",
+	question3: "<script>",
+	question4: "Dynamically Typed",
 };
 
 const userForm = document
 	.querySelector("#userForm")
 	.addEventListener("submit", (e) => {
 		e.preventDefault();
-		const [isValidForm, grade, missedAnswers] = validateForm();
+		const [isValidForm, grade, correct, incorrect] = validateForm();
 		if (!isValidForm) {
 			return false;
 		} else {
-			updateUser(grade, missedAnswers);
+			updateUser(grade, incorrect);
 		}
 	});
 
-const updateUser = (grade, missedAnswers) => {
+const updateUser = (grade, incorrect) => {
+	clearInterval(duration);
 	const output = document.querySelector(".results");
 	document.querySelector(".output-message").innerText = grade;
 	output.classList.replace("hide", "show");
@@ -129,7 +111,7 @@ const updateUser = (grade, missedAnswers) => {
 			document
 				.querySelector(".question_set")
 				.classList.replace("inactive", "active");
-			missedAnswers.forEach((answer) =>
+			incorrect.forEach((answer) =>
 				document
 					.querySelector(`input[value=${answer[1]}]`)
 					.setAttribute("checked", true)
@@ -139,7 +121,8 @@ const updateUser = (grade, missedAnswers) => {
 
 const validateForm = () => {
 	let score = 0;
-	let missedAnswers = [];
+	let incorrect = [];
+	let correct = [];
 	for (const key in answers) {
 		const userAnswer = document.querySelector(`input[name=${key}]:checked`);
 		const unanswered = document.querySelector(`input[name=${key}]`);
@@ -147,25 +130,26 @@ const validateForm = () => {
 		if (userAnswer === null) {
 			unanswered.parentElement.classList.add("invalid-form");
 			console.log("Error", key);
-			return [false, null, []];
+			return [false, null, [], []];
 		} else {
 			unanswered.parentElement.classList.remove("invalid-form");
 			const correctAnswer = compareAnswers(key, userAnswer.value);
 			if (correctAnswer === true) {
 				score++;
+				correct.push([key, correctAnswer]);
 			} else {
-				missedAnswers.push([key, correctAnswer]);
+				incorrect.push([key, correctAnswer]);
 			}
 		}
 	}
-	return [true, grading(score), missedAnswers];
+	return [true, grading(score), correct, incorrect];
 };
 
 const compareAnswers = (question, userAnswer) =>
-	answers[question] === userAnswer ? true : answers[question];
+	answers[question] === userAnswer.trim() ? true : answers[question];
 
 const grading = (score) => {
-	const grade = (score / 2) * 100;
+	const grade = (score / 4) * 100;
 	let message = "";
 	if (grade < 50) {
 		message = "Below average!";
@@ -180,6 +164,7 @@ const grading = (score) => {
 };
 
 const resetForm = () => {
+	hours = mins = secs = 0;
 	document
 		.querySelectorAll(".show")
 		.forEach((section) => section.classList.replace("show", "hide"));
@@ -190,5 +175,7 @@ const resetForm = () => {
 	document
 		.querySelector(".question_set")
 		.classList.replace("inactive", "active");
-	return document.getElementById("userForm").reset();
+
+	document.getElementById("userForm").reset();
+	return (duration = setInterval(timer, 1000));
 };

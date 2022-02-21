@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<!-- LANDING PAGE START -->
-		<section class="home hide">
+		<section class="home show">
 			<div class="img"></div>
 			<div class="text">
 				<h2 class="heading">JAVASCRIPT!</h2>
@@ -70,12 +70,11 @@
 		<!-- Initiate Questions End -->
 
 		<!-- Questions Start -->
-		<section class="questions container show">
+		<section class="questions container hide">
 			<div>
 				<h2 class="timer">00:00:00</h2>
 			</div>
 
-			<h2 class="score">00.00</h2>
 			<h2 class="user">
 				How much do you know, <span class="username">Doe</span>?
 			</h2>
@@ -94,8 +93,8 @@
 							<input type="radio" id="day2" name="question1" value="Tuesday" />
 							<span class="checkbox radio"></span>
 						</label>
-						<label class="answer">
-							Wednesday
+						<label class="answer"
+							>Wednesday
 							<input
 								type="radio"
 								id="day3"
@@ -104,8 +103,8 @@
 							/>
 							<span class="checkbox radio"></span>
 						</label>
-						<label class="answer">
-							Sunday
+						<label class="answer"
+							>Sunday
 							<input type="radio" id="day4" name="question1" value="Sunday" />
 							<span class="checkbox radio"></span>
 						</label>
@@ -123,6 +122,50 @@
 							<span class="checkbox radio"></span>
 						</label>
 					</div>
+					<div class="question_set inactive">
+						<p class="question">
+							Which tag can you use to link a Javascript file?
+						</p>
+						<label class="answer"
+							>&lt;java&gt;
+							<input type="radio" name="question3" value="&lt;java&gt;" />
+							<span class="checkbox radio"></span>
+						</label>
+						<label class="answer"
+							>&lt;source&gt;
+							<input type="radio" name="question3" value="&lt;source&gt;" />
+							<span class="checkbox radio"></span>
+						</label>
+						<label class="answer"
+							>&lt;script&gt;
+							<input type="radio" name="question3" value="&lt;script&gt;" />
+							<span class="checkbox radio"></span>
+						</label>
+						<label class="answer"
+							>&lt;javascript&gt;
+							<input type="radio" name="question3" value="&lt;javascript&gt;" />
+							<span class="checkbox radio"></span>
+						</label>
+					</div>
+					<div class="question_set inactive">
+						<p class="question">
+							Is javascript a statically typed or a dynamically typed language?
+						</p>
+						<label class="answer"
+							>Statically Typed
+							<input type="radio" name="question4" value="statically;" />
+							<span class="checkbox radio"></span>
+						</label>
+						<label class="answer"
+							>Dynamically Typed
+							<input type="radio" name="question4" value="Dynamically Typed" />
+							<span class="checkbox radio"></span> </label
+						><label class="answer"
+							>None of The Above
+							<input type="radio" name="question4" value="None of the above" />
+							<span class="checkbox radio"></span>
+						</label>
+					</div>
 					<button class="hide" id="submit">Submit</button>
 				</fieldset>
 			</form>
@@ -131,6 +174,21 @@
 			<button type="button" id="next" onclick="slider(event)">Next</button>
 		</section>
 		<!-- Questions End -->
+
+		<!-- Display Results Start -->
+		<section class="results hide">
+			<h2 class="score">00.00</h2>
+			<div class="score-card">
+				<h2>Your Results</h2>
+				<h3 class="output-message">50%: Below average!</h3>
+				<div class="results-btn">
+					<button class="retake-quiz" onclick="resetForm()">Retake Quiz</button>
+					<button class="show-answers">Show Answers</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Display Results End -->
 
 		<script src="js/script.js"></script>
 	</body>
